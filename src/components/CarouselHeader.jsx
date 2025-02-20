@@ -1,16 +1,10 @@
-import React, { useState } from "react";
-import { mockProducts } from "../mock/mockProducts";
-import ProductCard from "./ProductCard";
+import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import ProductCard from "../components/ProductCard";
 
-const ITEMS_PER_SLIDE = 6;
-
-const PromotionalProducts = () => {
+const CarouselHeader = ({ name, products, totalItems, itemsPerSlide }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const totalSlides = Math.max(
-    1,
-    Math.ceil(mockProducts.length / ITEMS_PER_SLIDE)
-  );
+  const totalSlides = Math.max(1, Math.ceil(totalItems / itemsPerSlide));
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % totalSlides);
@@ -24,7 +18,7 @@ const PromotionalProducts = () => {
     <div className="relative w-full">
       <div className="flex items-center justify-between mb-4 border-b border-gray-200 relative">
         <div className="relative">
-          <h2 className="text-green-600 font-semibold">Sản phẩm khuyến mãi</h2>
+          <h2 className="text-green-600 font-semibold">{name}</h2>
           <span className="absolute bottom-[-2px] left-0 w-[180px] h-[3px] bg-green-600"></span>
         </div>
         {totalSlides > 1 && (
@@ -44,21 +38,18 @@ const PromotionalProducts = () => {
           </div>
         )}
       </div>
-
-      <div className="grid grid-cols-3 gap-6">
-        {mockProducts
+      <div className="grid grid-cols-1 md:grid-cols-3 md:gap-6">
+        {products
           .slice(
-            currentSlide * ITEMS_PER_SLIDE,
-            (currentSlide + 1) * ITEMS_PER_SLIDE
+            currentSlide * itemsPerSlide,
+            (currentSlide + 1) * itemsPerSlide
           )
           .map((product) => (
-            <div key={product.id} className="h-72">
-              <ProductCard product={product} />
-            </div>
+            <ProductCard key={product.id} product={product} />
           ))}
       </div>
     </div>
   );
 };
 
-export default PromotionalProducts;
+export default CarouselHeader;

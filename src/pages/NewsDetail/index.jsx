@@ -8,35 +8,37 @@ import {
 } from "@ant-design/icons";
 
 import { ClockCircleOutlined, CommentOutlined } from "@ant-design/icons";
-import CommentForm from "../../components/CommentForm";
+import Comment from "../../components/Comment";
+import { mockNews } from "../../mock/mockNews";
+import { useParams } from "react-router-dom";
 
-const BlogPostDetail = ({
-  title,
-  date,
-  time,
-  comments,
-  image,
-  description,
-}) => (
+const BlogPostDetail = ({ post }) => (
   <div className="border-b border-gray-200">
-    <h2 className="text-xl font-bold text-gray-800 mb-2">{title}</h2>
+    <h1 className="text-xl text-gray-800 mb-2">{post.title}</h1>
     <div className="flex items-center text-gray-500 text-sm mb-4">
-      <span className="mr-4">{date}</span>
+      <span className="mr-4">{post.date}</span>
       <span className="mr-4">
         <ClockCircleOutlined className="mr-1" />
-        {time}
+        {post.time}
       </span>
       <span>
         <CommentOutlined className="mr-1" />
-        {comments} Bình luận
+        {post.comments} Bình luận
       </span>
     </div>
-    <img src={image} alt={title} className="w-full h-90 mb-4 rounded-lg" />
-    <p className="text-gray-700 pb-10">{description}</p>
+    <img
+      src={post.images[0]}
+      alt={post.title}
+      className="w-full h-90 mb-4 rounded-lg"
+    />
+    <p className="text-gray-700 pb-10">{post.description}</p>
   </div>
 );
 
 const NewsDetail = () => {
+  const { id } = useParams();
+  const post = mockNews.find((p) => p.id.toString() === id);
+
   const categories = [
     { name: "Cây chậu treo", count: 10 },
     { name: "Cây có hoa", count: 5 },
@@ -51,7 +53,7 @@ const NewsDetail = () => {
     {
       id: 1,
       image:
-        "https://cdn.pixabay.com/photo/2020/05/22/17/53/mockup-5206355_960_720.jpg", // Đường dẫn ảnh tạm, thay bằng ảnh thật
+        "https://cdn.pixabay.com/photo/2020/05/22/17/53/mockup-5206355_960_720.jpg",
       title: "Hướng dẫn lựa chọn và bố trí cây xanh trong phòng khách",
     },
     {
@@ -171,10 +173,11 @@ const NewsDetail = () => {
               {tags.map((tag) => (
                 <button
                   key={tag}
-                  className={`px-4 py-2 border-[1px] border-gray-200 rounded-100 text-sm ${selectedTag === tag
+                  className={`px-4 py-2 border-[1px] border-gray-200 rounded-100 text-sm ${
+                    selectedTag === tag
                       ? "bg-green-400 text-white "
                       : "bg-white text-gray-700 hover:bg-gray-100 "
-                    }`}
+                  }`}
                   onClick={() => setSelectedTag(tag)}
                 >
                   {tag}
@@ -188,17 +191,11 @@ const NewsDetail = () => {
         <div className="w-3/4 px-10">
           {/* List tin tức */}
           <div className="w-full ">
-            <BlogPostDetail {...posts} />
+            <BlogPostDetail post={post} />
           </div>
 
           {/* Comment */}
-          <div className="w-full flex items-center space-x-2 mt-6 pt-20 pb-20">
-            <CommentList />
-          </div>
-
-          <div className="w-full flex items-center space-x-2 mt-6 pt-20 pb-20">
-            <CommentForm />
-          </div>
+          <Comment />
         </div>
       </div>
     </>

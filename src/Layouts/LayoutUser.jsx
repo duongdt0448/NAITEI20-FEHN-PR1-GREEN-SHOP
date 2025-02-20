@@ -8,12 +8,10 @@ const LayoutUser = () => {
       <div className="z-50">
         <Header />
       </div>
-
       <div className="">
         <Outlet />
       </div>
-      
-     <Footer />
+      <Footer />
     </div>
   );
 };

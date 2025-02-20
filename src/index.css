@@ -56,8 +56,20 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 } */
+.custom-tabs .ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #3FB871 !important;
+}
 
-@media (prefers-color-scheme: light) {
+.custom-tabs .ant-tabs-ink-bar {
+  background-color: #3FB871 !important;
+}
+
+.custom-tabs .ant-tabs-tab:hover {
+  color: #3FB871 !important;
+  border-color: #3FB871 !important;
+}
+
+/* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;

@@ -161,7 +161,7 @@ export const mockProducts = [
     price: 690000,
     oldPrice: 850000,
     discount: 19,
-    images: ["/images/spx/spx2-13.png"],
+    images: ["/images/spx/spx2-13.png", "/images/spx/spx2-14.png","/images/spx/spx2-15.png"],
     rating: 4.0,
     isNew: false,
     descriptions: "Cây Phát Tài mang lại sự thịnh vượng và may mắn.",

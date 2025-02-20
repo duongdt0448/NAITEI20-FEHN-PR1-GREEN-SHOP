@@ -1,9 +1,20 @@
 import React from "react";
 import CommentForm from "./CommentForm";
 
-const CommentItem = ({ comment, handleReply, showFormReply, handleAddComment, setShowFormReply, replyTo }) => {
+const CommentItem = ({
+  comment,
+  handleReply,
+  showFormReply,
+  handleAddComment,
+  setShowFormReply,
+  replyTo,
+}) => {
   return (
-    <div className={`flex flex-col p-4 mb-4 border border-gray-200 rounded-lg ${comment.parentId ? "ml-10 border-l-4 border-gray-300" : ""}`}>
+    <div
+      className={`flex flex-col p-4 mb-4 border border-gray-200 rounded-lg ${
+        comment.parentId ? "ml-10 border-l-4 border-gray-300" : ""
+      }`}
+    >
       <div className="flex items-start">
         <img
           src={comment.avatar}
@@ -20,8 +31,12 @@ const CommentItem = ({ comment, handleReply, showFormReply, handleAddComment, se
               Trả lời
             </button>
           </div>
-          <p className="text-left text-gray-600 text-sm mt-1">{comment.comment}</p>
-          <p className="text-left text-gray-400 text-xs mt-1 italic">{comment.date}</p>
+          <p className="text-left text-gray-600 text-sm mt-1">
+            {comment.comment}
+          </p>
+          <p className="text-left text-gray-400 text-xs mt-1 italic">
+            {comment.date}
+          </p>
         </div>
       </div>
 

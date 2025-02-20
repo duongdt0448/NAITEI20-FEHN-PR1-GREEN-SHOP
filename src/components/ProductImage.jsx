@@ -1,18 +1,18 @@
 function ProductImage({ images, selectedImage, setSelectedImage }) {
   return (
-    <div className="flex flex-col space-y-4">
+    <div className="flex flex-col space-y-4 w-full md:w-2/5">
       <img
         src={selectedImage}
         alt="Main Product"
-        className="w-full h-64 object-cover rounded-lg"
+        className="w-full md:h-100 object-cover rounded-lg"
       />
       <div className="flex space-x-2">
         {images.map((image, index) => (
           <img
             key={index}
-            src="https://cdn.pixabay.com/photo/2020/05/22/17/53/mockup-5206355_960_720.jpg"
+            src={image}
             alt={`Thumbnail ${index}`}
-            className={`w-16 h-16 object-cover rounded-lg cursor-pointer ${
+            className={`w-20 h-20 md:w-16 md:h-16 object-cover rounded-lg cursor-pointer ${
               selectedImage === image ? "border-2 border-teal-500" : ""
             }`}
             onClick={() => setSelectedImage(image)}

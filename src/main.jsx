@@ -23,7 +23,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/products" element={<ProductList />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/news" element={<News />} />
-          <Route path="/news/detail" element={<NewsDetail />} />
+          <Route path="/news/:id" element={<NewsDetail />} />
           <Route path="app" element={<App />} />
           <Route path="cart" element={<Cart />} />
           <Route path="login" element={<Login />} />

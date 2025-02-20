@@ -12,14 +12,16 @@ function QuantitySelector() {
     <div className="flex items-center space-x-4">
       <span>Số lượng</span>
       <button
-        className="px-2 py-1 border rounded hover:bg-gray-100"
+        className="px-2 py-1 border rounded border-gray-300 hover:bg-gray-100 w-10 h-10"
         onClick={decreaseQuantity}
       >
         -
       </button>
-      <span className="px-4">{quantity}</span>
+      <button className="px-2 py-1 border rounded border-gray-300 hover:bg-gray-100 w-20 h-10">
+        {quantity}
+      </button>
       <button
-        className="px-2 py-1 border rounded hover:bg-gray-100"
+        className="px-2 py-1 border rounded border-gray-300 hover:bg-gray-100 w-10 h-10"
         onClick={increaseQuantity}
       >
         +

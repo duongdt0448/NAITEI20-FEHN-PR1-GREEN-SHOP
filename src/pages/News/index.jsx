@@ -1,32 +1,9 @@
 import { useState } from "react";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Typography from "@mui/material/Typography";
-import {
-  RightOutlined,
-  AppstoreOutlined,
-  UnorderedListOutlined,
-} from "@ant-design/icons";
-
-import { ClockCircleOutlined, CommentOutlined } from "@ant-design/icons";
-
-const BlogPost = ({ title, date, time, comments, image, description }) => (
-  <div className="border-b border-gray-200">
-    <h2 className="text-xl font-bold text-gray-800 mb-2">{title}</h2>
-    <div className="flex items-center text-gray-500 text-sm mb-4">
-      <span className="mr-4">{date}</span>
-      <span className="mr-4">
-        <ClockCircleOutlined className="mr-1" />
-        {time}
-      </span>
-      <span>
-        <CommentOutlined className="mr-1" />
-        {comments} Bình luận
-      </span>
-    </div>
-    <img src={image} alt={title} className="w-full h-90 mb-4 rounded-lg" />
-    <p className="text-gray-700 pb-10">{description}</p>
-  </div>
-);
+import { RightOutlined } from "@ant-design/icons";
+import { BlogPost } from "../../components/BlogPost";
+import { mockNews } from "../../mock/mockNews";
 
 const News = () => {
   const categories = [
@@ -37,39 +14,6 @@ const News = () => {
     { name: "Cây may mắn" },
     { name: "Cây trang trí" },
     { name: "Cây nội thất" },
-  ];
-
-  const newsItems = [
-    {
-      id: 1,
-      image:
-        "https://cdn.pixabay.com/photo/2020/05/22/17/53/mockup-5206355_960_720.jpg", // Đường dẫn ảnh tạm, thay bằng ảnh thật
-      title: "Hướng dẫn lựa chọn và bố trí cây xanh trong phòng khách",
-    },
-    {
-      id: 2,
-      image:
-        "https://cdn.pixabay.com/photo/2020/05/22/17/53/mockup-5206355_960_720.jpg",
-      title: "Những sai lầm nên tránh khi bố trí cây xanh trong nhà",
-    },
-    {
-      id: 3,
-      image:
-        "https://cdn.pixabay.com/photo/2020/05/22/17/53/mockup-5206355_960_720.jpg",
-      title: "7 loại cây xanh để bàn đang được giới văn phòng ưa chuộng",
-    },
-    {
-      id: 4,
-      image:
-        "https://cdn.pixabay.com/photo/2020/05/22/17/53/mockup-5206355_960_720.jpg",
-      title: "Hướng dẫn lựa chọn cây cảnh trang trí trong văn phòng",
-    },
-    {
-      id: 5,
-      image:
-        "https://cdn.pixabay.com/photo/2020/05/22/17/53/mockup-5206355_960_720.jpg",
-      title: "4 loại cây cảnh thích hợp bày trí ở khu vực đại sảnh",
-    },
   ];
 
   const tags = [
@@ -84,47 +28,14 @@ const News = () => {
     "Lưu niệm",
   ];
 
-  const posts = [
-    {
-      title: "Cách bố trí hoa chậu trước cửa ấn tượng ngay lần đầu tiên",
-      date: "20/12/2015",
-      time: "11:20:00 AM",
-      comments: 0,
-      image:
-        "https://cdn.pixabay.com/photo/2020/05/22/17/53/mockup-5206355_960_720.jpg",
-      description:
-        "Như thế hiện sự thân thiện cũng như sự hiếu khách của gia chủ, phần không gian trước cửa nhà luôn được đầu tư và trang trí khá bắt mắt...",
-    },
-    {
-      title: "Hướng dẫn lựa chọn và bố trí cây xanh trong phòng khách",
-      date: "20/12/2015",
-      time: "11:20:00 AM",
-      comments: 0,
-      image:
-        "https://cdn.pixabay.com/photo/2020/05/22/17/53/mockup-5206355_960_720.jpg",
-      description:
-        "Như thế hiện sự thân thiện cũng như sự hiếu khách của gia chủ, phần không gian trước cửa nhà luôn được đầu tư và trang trí khá bắt mắt...",
-    },
-    {
-      title: "7 loại cây xanh để bàn đang được giới văn phòng ưa chuộng",
-      date: "20/12/2015",
-      time: "11:20:00 AM",
-      comments: 0,
-      image:
-        "https://cdn.pixabay.com/photo/2020/05/22/17/53/mockup-5206355_960_720.jpg",
-      description:
-        "Như thế hiện sự thân thiện cũng như sự hiếu khách của gia chủ, phần không gian trước cửa nhà luôn được đầu tư và trang trí khá bắt mắt...",
-    },
-  ];
-
   const [selectedTag, setSelectedTag] = useState("Cây văn phòng");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
 
-  const totalPages = Math.ceil(newsItems.length / itemsPerPage);
+  const totalPages = Math.ceil(mockNews.length / itemsPerPage);
 
   // Lấy danh sách tin tức theo trang
-  const displayedProducts = newsItems.slice(
+  const displayedProducts = mockNews.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -180,10 +91,10 @@ const News = () => {
             <h3 className="text-lg font-bold mb-2">Tin tức nổi bật</h3>
             <div className="h-1 w-20 bg-green-500 mb-4"></div>
             <ul className="space-y-4">
-              {newsItems.map((item) => (
+              {mockNews.map((item) => (
                 <li key={item.id} className="flex items-center space-x-4">
                   <img
-                    src={item.image}
+                    src={item.images[0]}
                     alt={item.title}
                     className="w-20 h-20 object-cover rounded"
                   />
@@ -220,7 +131,7 @@ const News = () => {
           {/* List tin tức */}
           <div className="w-full px-10">
             {displayedProducts.map((post, index) => (
-              <BlogPost key={index} {...post} />
+              <BlogPost key={index} post={post} />
             ))}
           </div>
 
